@@ -1,0 +1,27 @@
+#include <bits/stdc++.h> 
+int findMinimumCoins(int amount) 
+{
+    int cnt=0;
+    vector<int> v={1,2,5,10,20,50,100,500,1000};
+    while(amount>0)
+    {
+        if(amount==1) return cnt+1;
+        int ind=lower_bound(v.begin(),v.end(),amount)-v.begin();
+        if(ind==9)
+        {
+            cnt+=amount/v[8];
+            amount=amount%v[8];
+        }
+        else
+        {
+            if(amount==v[ind])
+            {
+                cnt+=amount/v[ind];
+                return cnt;
+            }
+            cnt+=amount/v[ind-1];
+            amount=amount%v[ind-1];
+        }
+    }
+    return cnt;
+}
