@@ -1,12 +1,20 @@
 #include <bits/stdc++.h> 
-int uniquePaths(int m ,int n)
-{
-    int N = n+m-2;
-    int r=m-1;
-    int ans=1;
-    for(int i=1 ; i<=r ; i++)
-    {
-        ans = ans*(N-r+i)/i;
-    }
-    return ans;
+int f(int col, int row, vector<vector<int>> &dp){
+	int cnt=0;
+	if (col==0, row==0){
+		return 1;
+	}
+	if (dp[col][row]!=-1) return dp[col][row];
+	if (col>0){
+		cnt+=f(col-1, row, dp);
+	}if (row>0){
+		cnt+=f(col, row-1, dp);
+	}
+	return dp[col][row]=cnt;
+}
+
+int uniquePaths(int m, int n) {
+	// Write your code here.
+	vector<vector<int>> dp(m, vector<int> (n, -1));
+	return f(m-1, n-1, dp);
 }
