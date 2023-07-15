@@ -1,0 +1,21 @@
+void takeOrNotTake(vector<vector<int>> &superSet, vector<int> arr, vector<int> ans, int n, int k, int i)
+{   
+    if (i == n)
+    {
+        if(k==0){
+            superSet.push_back(ans);
+        }
+        return;
+    }
+    takeOrNotTake(superSet, arr, ans, n, k, i + 1);
+    ans.push_back(arr[i]);
+    takeOrNotTake(superSet, arr, ans, n, k-arr[i], i + 1);
+    return;
+}
+vector<vector<int>> findSubsetsThatSumToK(vector<int> arr, int n, int k)
+{
+    vector<vector<int>> superSet;
+    vector<int> ans;
+    takeOrNotTake(superSet, arr, ans, n, k, 0);
+    return superSet;
+}
