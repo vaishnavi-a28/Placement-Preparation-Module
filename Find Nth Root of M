@@ -1,0 +1,9 @@
+int NthRoot(int n, int m) {
+  int f,i = 1;  
+  while ( f < 0 && i++)
+  {
+    f = pow(i,n) - m;
+  }
+  if (f == 0) return i;
+  return -1;
+}
