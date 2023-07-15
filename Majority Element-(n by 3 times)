@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+vector<int> majorityElement(vector<int> v) {
+    int count1 = 0;
+    int count2 = 0;
+    int ele1 = 0;
+    int ele2 = 0;
+    for(int i = 0 ; i<v.size() ; i++){
+        if(count1 == 0 && ele2 != v[i]){
+            ele1 = v[i];
+            count1 = 1;
+        }
+        else if(count2 == 0 && ele1 != v[i]){
+            ele2 = v[i];
+            count2 = 1;
+        }
+        else if(ele1 == v[i]){
+            count1++;
+        }
+        else if(ele2 == v[i]){
+            count2++;
+        }
+        else{
+            count1--;
+            count2--;
+        }
+    }
+    vector<int> vrr;
+    int count3 = 0;
+    int count4 = 0;
+    for(int i = 0 ; i<v.size() ; i++){
+        if(ele1 == v[i])count3++;
+        if(ele2 == v[i])count4++;
+    }
+    if(count3 > (v.size() / 3)) vrr.push_back(ele1);
+    if(count4 > (v.size() / 3)) vrr.push_back(ele2);
+    return vrr;
+}
