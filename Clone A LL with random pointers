@@ -1,0 +1,18 @@
+ Node *curr = head;
+        while(curr!=NULL){
+            Node *next = curr->next;
+            curr->next = new Node(curr->data);
+            curr->next->next = next;
+            curr = next;
+        }
+        for(curr = head; curr!=NULL; curr = curr->next->next){
+            curr->next->arb = (curr->arb) ? curr->arb->next : NULL;
+        }
+        Node *h2 = head->next;
+        Node *clone = h2;
+        for(curr = head; curr!=NULL; curr = curr->next){
+            curr->next = curr->next->next;
+            clone->next = clone->next ? clone->next->next : NULL;
+            clone = clone->next;
+        }
+        return h2;
