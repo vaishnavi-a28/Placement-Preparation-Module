@@ -1,0 +1,42 @@
+Node<int>* solve(Node<int>* first, Node<int>* second){
+    if(first->next==NULL){
+        first->next=second;
+        return first;
+    }
+    Node<int>* lower=first;
+    Node<int>* upper=lower->next;
+    Node<int>* mid=second;
+    Node<int>* mid_next=mid->next;
+    while(upper!=NULL && mid!=NULL){
+        if((lower->data<= mid->data) && (mid->data<=upper->data))
+        {
+            mid_next=mid->next;
+            lower->next=mid;
+            mid->next=upper;
+            lower=mid;
+            mid=mid_next;
+        }
+        else{
+            lower=upper;
+            upper=upper->next;
+            if(upper==NULL){
+                lower->next=mid;
+                return first;
+            }
+        }
+    }
+    return first;
+}
+
+Node<int>* sortTwoLists(Node<int>* first, Node<int>* second)
+{
+    // Write your code here.
+    if(first==NULL)
+     return second;
+    if(second==NULL)
+     return first;
+    if(first->data>=second->data)
+     solve(second,first);
+    else 
+     solve(first,second);
+}
