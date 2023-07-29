@@ -1,18 +1,24 @@
-#include <bits/stdc++.h> 
-void deletemid(stack<int> &inputStack, int count, int size){
-   //base case
-   if(count == size/2){
-      inputStack.pop();
-      return ;
-   }
-   int val = inputStack.top();
-   inputStack.pop();
-   deletemid(inputStack, count+1, size);
-   inputStack.push(val);
-}
-void deleteMiddle(stack<int>&inputStack, int N){
-	
-   // Write your code here
-   int count=0;
-   deletemid(inputStack, count, N);
+bool isValidParenthesis(string s)
+{
+    // Write your code here.
+    stack<char> st;
+    for(int i=0;i<s.length();i++){
+        char ch= s[i];
+        if(ch=='{' || ch=='(' || ch=='[')
+          st.push(ch);
+        else{
+          if (!st.empty()) {
+            char top = st.top();
+            if ((ch == ')' && top == '(') || (ch == ']' && top == '[') ||
+                (ch == '}' && top == '{')) {
+              st.pop();
+            } else
+              return false;
+          } else
+            return false;
+        }
+    }
+    if(st.empty())
+     return true;
+    else return false;
 }
