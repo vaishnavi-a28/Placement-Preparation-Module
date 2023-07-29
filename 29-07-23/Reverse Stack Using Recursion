@@ -1,0 +1,9 @@
+void reverseStack(stack<int> &st) {
+    // Write your code here
+    stack<int> s;
+    while(!st.empty()){
+        s.push(st.top());
+        st.pop();
+    }
+    st=s;
+}
