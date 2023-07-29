@@ -1,0 +1,18 @@
+#include <bits/stdc++.h> 
+void deletemid(stack<int> &inputStack, int count, int size){
+   //base case
+   if(count == size/2){
+      inputStack.pop();
+      return ;
+   }
+   int val = inputStack.top();
+   inputStack.pop();
+   deletemid(inputStack, count+1, size);
+   inputStack.push(val);
+}
+void deleteMiddle(stack<int>&inputStack, int N){
+	
+   // Write your code here
+   int count=0;
+   deletemid(inputStack, count, N);
+}
